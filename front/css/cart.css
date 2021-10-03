@@ -33,15 +33,20 @@ h2 {
     width: 50%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 .cart__item__content__titlePrice {
 	display: flex;
 	justify-content: space-between;
+	align-items: center
 }
 .cart__item__content__titlePrice h2,
 .cart__item__content__titlePrice p {
 	margin: 0;
+}
+
+.cart__item__content__settings {
+	display:flex;
 }
 .cart__item__content__settings p {
 	margin: 0;
@@ -65,10 +70,16 @@ h2 {
 	margin-right: 10px;
 	display: flex;
 }
-.cart__item__content__settings__delete p {
-	display: inline;
+.cart__item__content__settings__delete button {
+	margin-left:1rem;
+	color: var(--footer-secondary-color);
+	background-color: white;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 14px;
+    border-radius: 20px;
+    border: 1px solid #767676;
 }
-.cart__item__content__settings__delete p:hover {
+.cart__item__content__settings__delete button:hover {
 	cursor: pointer;
 	font-weight: 700;
 }
