@@ -27,7 +27,7 @@ fetch (url)
         const product = data;
         console.log(product);
 
-        // création de la carte dans la section ayant pour id #items
+        // affichage des détails du produit dans la section ayant pour id #items
 
         const DIV = document.getElementById('items');
         DIV.innerHTML +=
@@ -35,7 +35,7 @@ fetch (url)
         `
         <article>
             <div class="item__img">
-            <img src="${product.imageUrl}" alt="Photographie d'un canapé"/>  
+            <img src="${product.imageUrl}" alt="${product.altTxt}"/>  
             </div>
             <div class="item__content">
 
@@ -53,7 +53,7 @@ fetch (url)
                 <div class="item__content__settings__color">
                   <label for="color-select">Choisir une taille :</label>
                   <select name="color-select" id="colors">
-                      <option value="">--SVP, choisissez une couleur --</option>
+                      
                   </select>
                 </div>
 
@@ -95,6 +95,11 @@ fetch (url)
         const img = product.imageUrl;
         sofa.set ('imageUrl', img)
 
+        // texte alternatif de l'image 
+
+        const alt = product.altTxt;
+        sofa.set ('altTxt', alt)
+
         // couleur // 
     
         const colorChoice = document.getElementById("colors");
@@ -111,7 +116,7 @@ fetch (url)
         // quantité 
 
         const quantity = document.getElementById("quantity");
-        let quantityValue = quantity.value;
+        let quantityValue = parseFloat(quantity.value);
         sofa.set ('quantity', quantityValue)
 
         // prix 
@@ -122,9 +127,9 @@ fetch (url)
         // quand une quantité > 1 est choisie 
 
         quantity.addEventListener('change', function(e) {
-            quantityValue = quantity.value;
+            quantityValue = parseFloat(quantity.value);
             sofa.set('quantity', quantityValue);
-            totalPrice = parseFloat(price) * quantityValue;
+            totalPrice = parseFloat(price) * parseFloat(quantityValue);
             sofa.set('price', totalPrice);
         });
 
@@ -134,16 +139,22 @@ fetch (url)
 
         const btnAddBasket = document.getElementById("addToCart");
 
+        // lorsque l'on clique sur le bouton "Ajouter au panier"
+
         btnAddBasket.addEventListener("click", function(e) {
+
             e.preventDefault();
+
             function addToCart(data) {
 
                 const productObject = {
                     name : sofa.get('name'),
                     img : sofa.get('imageUrl'),
+                    alt : sofa.get('altTxt'),
                     colors : sofa.get('colors'),
                     quantity : sofa.get('quantity'),
-                    price : sofa.get('price')
+                    price : sofa.get('price'),
+                    id : id 
                 };
 
                 const clé =  `${data.name}` + ' ' + productObject.colors;
@@ -165,11 +176,14 @@ fetch (url)
                     const newPrice = defaultPrice + productObject.price
 
                     const newProductObject = {
+
                         name : sofa.get('name'),
                         img : sofa.get('imageUrl'),
-                        options : sofa.get('options'),
+                        alt : sofa.get('altTxt'),
+                        colors : sofa.get('colors'),
                         quantity : newQuantity,
-                        price : newPrice
+                        price : newPrice,
+                        id : id
                     }
 
                     localStorage.setItem(clé, JSON.stringify(newProductObject));
@@ -182,4 +196,6 @@ fetch (url)
     
         }); 
 
-    });
+    })
+
+    .catch((erreur) => console.log("erreur : " + erreur)); // en cas d'erreur, l'erreur est affichée dans la console

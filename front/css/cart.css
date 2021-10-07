@@ -65,21 +65,24 @@ h2 {
 }
 .cart__item__content__settings__quantity {
 	display: flex;
+	align-items: center;
 }
 .cart__item__content__settings__quantity p {
 	margin-right: 10px;
 	display: flex;
 }
-.cart__item__content__settings__delete button {
+
+.cart__item__content__settings button {
 	margin-left:1rem;
 	color: var(--footer-secondary-color);
 	background-color: white;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 14px;
     border-radius: 20px;
-    border: 1px solid #767676;
+    border: 1px solid #ffffff;
 }
-.cart__item__content__settings__delete button:hover {
+
+.cart__item__content__settings button:hover {
 	cursor: pointer;
 	font-weight: 700;
 }
@@ -87,18 +90,42 @@ h2 {
 /*******/
 /*Price*/
 /*******/
+
 .cart__price {
     border-top: 1px solid white;
     padding-top: 35px;
+	display:flex;
+	flex-direction: column;
 }
 .cart__price p {
 	text-align: end;
 	font-size: 22px;
 }
 
+.cart__price div {
+	align-self: flex-end;
+	display:flex;
+}
+
+.cart__price button {
+	margin-right:4rem;
+	color: var(--footer-secondary-color);
+	background-color: white;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 14px;
+    border-radius: 20px;
+    border: 1px solid #ffffff;
+}
+
+.cart__price button:hover {
+	cursor: pointer;
+	font-weight: 700;
+}
+
 /*******/
 /*Order*/
 /*******/
+
 .cart__order {
     display: flex;
     justify-content: center;
@@ -144,8 +171,6 @@ h2 {
 .cart__order__form__submit input:hover {
     box-shadow: rgb(42 18 206 / 90%) 0 0 22px 6px;
 }
-
-
 
 /***************/
 /*Media queries*/
