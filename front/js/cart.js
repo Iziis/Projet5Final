@@ -20,6 +20,7 @@ const PANIER = document.getElementById('cart__items');
 
 if (basketArray.size < 1) {
     let emptyBasket = document.createElement('p')
+    emptyBasket.style = ('text-align:center'); 
     emptyBasket.innerText = 'Attention votre panier est vide !'
     PANIER.appendChild(emptyBasket)
 }
